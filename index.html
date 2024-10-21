@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes Lindos</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            background-color: white; /* Cambia el fondo a negro */
+            font-family: Arial, sans-serif; /* Fuente más legible */
+            padding: 20px; /* Espacio en los bordes */
+        }
+
+        h1 {
+            font-size: 2.5rem; /* Tamaño de fuente ajustado para ser más responsivo */
+            color: #ff0000; /* Cambiado a rojo */
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 10; /* Asegura que el título esté por encima de los corazones */
+        }
+
+        #messageContainer {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Asegura que el contenedor esté por encima de los corazones */
+        }
+
+        #message {
+            font-size: 1.5rem; /* Tamaño de fuente ajustado para ser más responsivo */
+            color: #ff0000; /* Cambiado a rojo */
+            line-height: 1.5; /* Espaciado entre líneas */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem; /* Tamaño de fuente ajustado para ser más responsivo */
+            background-color: #ff0000; /* Cambiado a rojo */
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            margin-top: 20px;
+            z-index: 10; /* Asegura que el botón esté por encima de los corazones */
+            transition: background-color 0.3s; /* Transición suave al cambiar el color */
+        }
+
+        button:hover {
+            background-color: #cc0000; /* Color rojo más oscuro al pasar el ratón */
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            #message {
+                font-size: 1.2rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+            }
+
+            button {
+                font-size: 0.9rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+                padding: 8px 16px; /* Tamaño del botón ajustado en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        ¡ESPERO QUE SEAS FELIZ HOY <br>
+        Y TODOS LOS DÍAS, MI AMOR!  ❤️
+    </h1>
+    
+    <div id="messageContainer">
+        <div id="message"></div>
+    </div>
+    <button id="showMessageBtn">Mostrar Mensaje</button>
+
+    <script>
+        // Mensajes lindos
+        const messages = [
+            "En cada rincón de mi vida, tu luz brilla intensamente.<br> Eres una persona maravillosa que transforma los días más grises en momentos de alegría.<br> Tu sonrisa y tu bondad son regalos que valoro más de lo que las palabras pueden expresar.",
+    
+            "Aunque en ocasiones las nubes cubran tu cielo,<br> quiero que sepas que dentro de ti hay una luz brillante que nunca se apaga.<br> Tienes una fuerza extraordinaria, y estoy aquí para recordarte lo hermosa y capaz que eres.<br> Juntos, podemos superar cualquier tormenta que se nos presente.",
+    
+            "Eres como una estrella que guía mi camino;<br> incluso cuando no estamos juntos, sé que siempre brillas con tu luz única.<br> Tu esencia es un recordatorio constante de lo especial que eres en mi vida,<br> y quiero que siempre lleves contigo esa certeza.",
+    
+            "Cada día que pasa, me doy cuenta de lo afortunado que soy al tenerte a mi lado.<br> Tu inteligencia y creatividad me inspiran a ser mejor,<br> y tu bondad deja una huella imborrable en quienes te conocen.<br> Eres una de las razones por las que creo en el amor verdadero.",
+    
+            "Sé que a veces la vida puede sentirse abrumadora,<br> pero recuerda que no tienes que enfrentarlo todo sola.<br> Estoy aquí para ti, listo para apoyarte en cada paso del camino.<br> Juntos, seremos más fuertes y enfrentaremos cualquier desafío que se nos presente.",
+    
+            "Eres una fuente de inspiración no solo para mí,<br> sino para todos los que tienen la suerte de conocerte.<br> Tu capacidad para enfrentar los desafíos con valentía es admirable.<br> Siempre estaré a tu lado, animándote y recordándote lo increíble que eres.",
+    
+            "La vida puede ser un viaje complicado,<br> pero nunca olvides que dentro de ti hay una guerrera.<br> Cada día es una nueva oportunidad para brillar y mostrar al mundo lo maravillosa que eres.<br> Estoy aquí para apoyarte y celebrar cada pequeño triunfo contigo.",
+    
+            "En los momentos de tristeza, quiero que sepas que estoy aquí para abrazarte con todo mi amor.<br> Tu calidez y tu amor hacen que el mundo sea un lugar más bonito.<br> Eres valiosa, y quiero que siempre lo recuerdes.",
+    
+            "Eres más fuerte de lo que imaginas,<br> y cada desafío que enfrentas es una oportunidad para crecer.<br> Siempre estaré aquí, animándote y recordándote que juntos podemos lograr cualquier cosa.<br> Tu fortaleza me inspira a ser mejor.",
+    
+            "En esos días grises, quiero que reflexiones sobre todas las cosas hermosas que has logrado<br> y en las vidas que has tocado con tu amor.<br> Eres un tesoro invaluable en mi vida,<br> y mereces toda la felicidad que el mundo puede ofrecerte."
+        ];
+
+        // Mostrar un mensaje al hacer clic en el botón
+        document.getElementById('showMessageBtn').addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            document.getElementById('message').innerHTML = messages[randomIndex]; // Cambiado a innerHTML
+            document.getElementById('messageContainer').style.display = 'block';
+        });
+
+        // Función para crear corazones que caen
+        function createHeart() {
+            const heart = document.createElement('img');
+            heart.src = 'imagenes/corazon.png'; // Cambia 'corazon.png' por el nombre de tu imagen de corazón
+            heart.style.position = 'absolute';
+            heart.style.width = '30px'; // Tamaño del corazón
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.zIndex = '1'; // Asegúrate de que los corazones estén detrás del mensaje y el botón
+
+            document.body.appendChild(heart);
+
+            // Animación para que caiga el corazón
+            heart.animate(
+                [
+                    { transform: 'translateY(0)' },
+                    { transform: 'translateY(100vh)' }
+                ],
+                {
+                    duration: Math.random() * 3000 + 2000, // Duración de la caída
+                    easing: 'linear',
+                    fill: 'forwards'
+                }
+            );
+
+            // Eliminar el corazón después de que cae
+            setTimeout(() => {
+                heart.remove();
+            }, Math.random() * 3000 + 2000); // Eliminar corazón después de caer
+        }
+
+        // Crear corazones cada 300 ms
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
